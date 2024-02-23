@@ -28,7 +28,11 @@ spec:
               "/models/PsiPi/liuhaotian_llava-v1.5-13b-GGUF/mmproj-model-Q4_0.gguf",
             ]
           resources:
+            requests:
+              cpu: 4000m
+              memory: 2Gi
             limits:
+              cpu: 16000m
               memory: 16Gi
           ports:
             - containerPort: 1234
