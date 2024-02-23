@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+#
+# This tool downloads models to the /media/plugin-data/llama-cpp-models directory - I'll generalize it later.
+#
+# You can use it by running:
+# ./download-model.py namespace/repo/model.gguf
+#
+# For example:
+# ./download-model.py PsiPi/liuhaotian_llava-v1.5-13b-GGUF/llava-v1.5-13b-Q2_K.gguf
 import argparse
 from urllib.parse import urlparse
 import subprocess
