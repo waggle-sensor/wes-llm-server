@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llama-cpp-server
+spec:
+  selector:
+    matchLabels:
+      app: llama-cpp-server
+  template:
+    metadata:
+      labels:
+        app: llama-cpp-server
+    spec:
+      containers:
+        - name: llama-cpp-server
+          image: ghcr.io/ggerganov/llama.cpp:server
+          args:
+            [
+              "--host",
+              "0.0.0.0",
+              "--port",
+              "1234",
+              "--model",
+              "/models/TheBloke/phi-2-GGUF/phi-2.Q4_K_S.gguf",
+            ]
+          ports:
+            - containerPort: 1234
+          volumeMounts:
+            - name: models
+              mountPath: /models
+              mountPropagation: HostToContainer
+              readOnly: true
+      volumes:
+        - name: models
+          hostPath:
+            path: /media/plugin-data/llama-cpp-models
