@@ -15,7 +15,9 @@ spec:
     spec:
       containers:
         - name: llama-cpp-server
-          image: ghcr.io/ggerganov/llama.cpp:server
+          #image: ghcr.io/ggerganov/llama.cpp:server
+          # NOTE I built a custom version of the server which uses CUDA 11.6 so it can run on the blades.
+          image: seanshahkarami/llama.cpp:server-cuda
           args: [
               "--host",
               "0.0.0.0",
