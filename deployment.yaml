@@ -17,8 +17,7 @@ spec:
         - name: llama-cpp-server
           # NOTE(sean) I built a custom version of the server which uses CUDA 11.6 so it can run on the blades.
           image: seanshahkarami/llama.cpp:server-cuda
-          args:
-            [
+          args: [
               "--host",
               "0.0.0.0",
               "--port",
@@ -27,6 +26,12 @@ spec:
               "/models/PsiPi/liuhaotian_llava-v1.5-13b-GGUF/llava-v1.5-13b-Q4_0.gguf",
               "--mmproj",
               "/models/PsiPi/liuhaotian_llava-v1.5-13b-GGUF/mmproj-model-Q4_0.gguf",
+              # NOTE(sean) You have to explicitly pass the number of layers you want to offload to the GPU. I just
+              # kind of guessed a few large numbers until I didn't see any change in VRAM usage. I assume this means
+              # the entire model is offloaded. For llava-v1.5-13b-Q4_0.gguf, this increased the tokens/s from ~1.5 to
+              # ~23.
+              "--n-gpu-layers",
+              "200",
             ]
           resources:
             requests:
