@@ -18,7 +18,7 @@ git clone https://github.com/waggle-sensor/wes-llm-server
 cd wes-llm-server
 ```
 
-Make sure the `--model` flag in the `deployment.yaml` points to your model.
+Make sure the `--model` flag in the `deployment.yaml` points to your model and that `--mmproj` points to your multimodal projection model, if you're using a vision modal.
 
 Finally, you can deploy the whole thing with:
 
