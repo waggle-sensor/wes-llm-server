@@ -32,6 +32,10 @@ spec:
               # ~23.
               "--n-gpu-layers",
               "200",
+              # From the llama.cpp server docs:
+              # The default is 512, but LLaMA models were built with a context of 2048, which will provide better results for longer input/inference.
+              "--ctx-size",
+              "2048",
             ]
           resources:
             requests:
